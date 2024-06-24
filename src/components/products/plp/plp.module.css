@@ -19,6 +19,12 @@
   object-position: bottom;
 }
 
+.linkTo {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 @media (min-width: 590px) {
   .container {
     justify-content: flex-start;

@@ -1,4 +1,4 @@
-import PaymentSuccessful from "@/components/checkout/paymentSuccessful/paymentSuccessful";
+import PaymentSuccessful from "@/components/paymentSuccessful/paymentSuccessful";
 import { getCheckoutSession } from "../actions/checkout/getCheckoutSession";
 
 export const metadata = {

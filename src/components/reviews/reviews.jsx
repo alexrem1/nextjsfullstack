@@ -5,11 +5,13 @@ import { useState } from "react";
 import ReviewSubmitted from "./reviewSubmitted/reviewSubmitted";
 import ReviewForm from "./reviewForm/reviewForm";
 import ReviewsUI from "./reviewsUI/reviewsUI";
+import ReviewComments from "./reviewComments/reviewComments";
 
 const Reviews = ({ reviews, params }) => {
   const [reviewOpen, setReviewOpen] = useState(false);
-
+  const [reviewCommentOpen, setReviewCommentOpen] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [selectedRating, setSelectedRating] = useState(null);
 
   const toggleReview = () => {
     setReviewOpen((prev) => {
@@ -25,6 +27,8 @@ const Reviews = ({ reviews, params }) => {
         toggleReview={toggleReview}
         reviews={reviews}
         reviewOpen={reviewOpen}
+        setSelectedRating={setSelectedRating}
+        setReviewCommentOpen={setReviewCommentOpen}
       />
       {reviewOpen && (
         <ReviewForm
@@ -35,6 +39,11 @@ const Reviews = ({ reviews, params }) => {
         />
       )}
       <ReviewSubmitted isSubmitted={isSubmitted} />
+      <ReviewComments
+        reviews={reviews}
+        reviewCommentOpen={reviewCommentOpen}
+        selectedRating={selectedRating}
+      />
     </div>
   );
 };

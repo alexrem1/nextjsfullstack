@@ -212,15 +212,6 @@ select {
 
 /* spinner */
 
-.loading {
-  /* position: relative; */
-  /* width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: calc(100vh - 70px); */
-}
-
 .loading > svg {
   /* position: absolute; */
   width: 25px;

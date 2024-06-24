@@ -1,5 +1,6 @@
 "use server";
-const { db } = require("@/lib/db");
+import { db } from "@/lib/db";
+import { Set } from "core-js";
 
 async function getCategories() {
   let connection;

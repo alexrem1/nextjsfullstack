@@ -46,5 +46,5 @@ const StarRating = React.forwardRef(
     );
   }
 );
-
+StarRating.displayName = "StarRating";
 export default StarRating;

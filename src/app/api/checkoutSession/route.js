@@ -3,7 +3,7 @@ import Stripe from "stripe";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-export const POST = async (req, res) => {
+export const POST = async (req) => {
   // Create a response object to modify headers
   const response = new NextResponse();
 

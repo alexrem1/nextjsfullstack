@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import React from "react";
-import styles from "./PaymentSuccessful.module.css"; // Import CSS file
+import styles from "./paymentSuccessful.module.css";
 
 function PaymentSuccessful({ error, paymentMade, session }) {
   const router = useRouter();

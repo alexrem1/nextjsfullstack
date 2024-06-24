@@ -4,10 +4,6 @@ import { DesktopNavLinks } from "./navLink/navLink";
 import React, { useState } from "react";
 import styles from "./desktopLinks.module.css";
 
-// Temporary variables to simulate authentication and admin status
-const authenticated = true;
-const isAdmin = true;
-
 const DesktopLinks = () => {
   const links = [
     { title: "Home", path: "/" },

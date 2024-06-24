@@ -91,6 +91,15 @@ export async function getCheckoutSession(session_id) {
                 )
                 .map((product) => `${product.quantity}x ${product.description}`)
                 .join(", ")}</p></li>
+                <li><p>and it'll be sent to the provided shipping address:  ${
+                  session.shipping_details.address.line1
+                }, ${
+          session.shipping_details.address.line2 !== null
+            ? `${session.shipping_details.address.line2}, `
+            : ""
+        } ${session.shipping_details.address.city}, ${
+          session.shipping_details.address.postal_code
+        } </p></li>
       <li> <p>We'll be in touch with you soon to confirm your order on the number provided: ${
         session.customer_details.phone
       }</p></li>

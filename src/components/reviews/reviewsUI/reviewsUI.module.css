@@ -41,6 +41,11 @@
   display: flex;
   gap: 10px;
   justify-content: center;
+  cursor: pointer;
+}
+
+.starRatingsContainer:hover {
+  opacity: 0.3;
 }
 
 .stars {
@@ -99,6 +104,15 @@
   .averageContainer {
     margin: unset;
     max-width: unset;
+    width: 200px;
+  }
+  .innerContainer {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+
+  .innerContainer button {
     width: 200px;
   }
 }

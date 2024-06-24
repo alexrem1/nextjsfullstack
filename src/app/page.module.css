@@ -1,13 +1,58 @@
+/* page.module.css */
+
+.container {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 70px);
+  overflow: hidden;
+}
+
+.container .padding {
+  padding: 0 20px;
+}
+
 .imgContainer {
   position: relative;
-  height: 500px;
   width: 100%;
-  max-width: 800px;
+  height: 100%;
 }
-.container {
-  padding: 0 20px;
-  min-height: calc(100% - 71px);
+
+.overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
 }
-.homedog {
-  color: red;
+
+.heroText {
+  font-size: 200%;
+  margin: 0;
+}
+
+.subText {
+  font-size: 100%;
+  margin: 0;
+}
+
+@media (min-width: 768px) {
+  .heroText {
+    font-size: 250%;
+  }
+
+  .subText {
+    font-size: 125%;
+  }
+}
+
+@media (min-width: 769px) {
+  .heroText {
+    font-size: 300%;
+  }
+
+  .subText {
+    font-size: 150%;
+  }
 }

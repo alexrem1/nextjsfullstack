@@ -1,7 +1,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar/Navbar";
-import Footer from "@/components/footer/Footer";
+import Footer from "@/components/footer/footer";
 import dynamic from "next/dynamic";
 import ScrollToTop from "@/components/scrollToTop/scrollToTop";
 
@@ -45,7 +45,7 @@ export default function RootLayout({ children }) {
           <ScrollToTop />
           <Navbar />
           {children}
-          <Footer />
+          <Footer />{" "}
         </DynamicCartProvider>
       </body>
     </html>

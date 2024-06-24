@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import styles from "./plp.module.css";
 import FilterCategory from "../filters/filterCategory";
+import ReviewsAverage from "@/components/reviews/reviewsAverage/reviewsAverage";
 
 function Plp({ products, searchParams }) {
   return (
@@ -10,7 +11,10 @@ function Plp({ products, searchParams }) {
       {products.map((product) => {
         return (
           <div key={product.productId} className={styles.individual}>
-            <Link href={`/products/${product.productId}`}>
+            <Link
+              href={`/products/${product.productId}`}
+              className={styles.linkTo}
+            >
               <div
                 className={`${styles.imgContainer} ${
                   product.productName === "Purple Macaron"
@@ -25,6 +29,7 @@ function Plp({ products, searchParams }) {
                   priority
                 />
               </div>
+              <ReviewsAverage reviews={product.reviews} />
               <h3>{product.productName}</h3>
 
               {product.variants.length > 0 && (

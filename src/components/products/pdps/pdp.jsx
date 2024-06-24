@@ -4,7 +4,7 @@ import FilterCategory from "../filters/filterCategory";
 import AddToCartContainer from "@/components/cart/addToCartContainer/addToCartContainer";
 import Accordion from "./accordion/accordion";
 import Reviews from "@/components/reviews/reviews";
-import ReviewsAverage from "./reviewsAverage/reviewsAverage";
+import ReviewsAverage from "@/components/reviews/reviewsAverage/reviewsAverage";
 
 function Pdp({ params, searchParams, product }) {
   return (

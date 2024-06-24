@@ -9,15 +9,3 @@
   color: #000;
   text-align: center;
 }
-
-@media (min-width: 1024px) {
-  .innerContainer {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-evenly;
-  }
-
-  .innerContainer button {
-    width: 200px;
-  }
-}

@@ -19,11 +19,26 @@ async function Homepage() {
   // console.log(check, "this the api route");
   return (
     <div className={styles.container}>
-      <CategoriesContainer />
-      <h1 className={`${styles.homedog} homedog`}>This is the home page</h1>
-      <div className={styles.imgContainer}>
-        <Image src="/choc_croissant.jpg" alt="hero" fill priority />
-      </div>
+      <>
+        <div className={styles.padding}>
+          <CategoriesContainer />
+        </div>
+        <div className={styles.imgContainer}>
+          <Image
+            src="/landing.jpg"
+            alt="hero"
+            layout="fill"
+            objectFit="cover"
+            priority
+          />
+          <div className={styles.overlay}>
+            <h1 className={styles.heroText}>
+              Welcome to Alexquisite Patisserie
+            </h1>
+            <p className={styles.subText}>Delight in every bite</p>
+          </div>
+        </div>
+      </>
     </div>
   );
 }

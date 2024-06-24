@@ -3,7 +3,7 @@ import Stripe from "stripe";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-export async function GET(req, res) {
+export async function GET(req) {
   const { searchParams } = new URL(req.url);
   console.log(searchParams);
   const session_id = searchParams.get("session_id");

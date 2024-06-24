@@ -28,10 +28,14 @@ function ReviewsAverage({ reviews }) {
   };
   return (
     <div className={styles.averageContainer}>
-      <div className={styles.reviewStarsContainer}>
-        {renderStars(averageRating)}
+      {reviews.length > 0 ? (
+        <div className={styles.reviewStarsContainer}>
+          {renderStars(averageRating)}
+          <span>{reviews.length} reviews</span>
+        </div>
+      ) : (
         <span>{reviews.length} reviews</span>
-      </div>
+      )}
     </div>
   );
 }

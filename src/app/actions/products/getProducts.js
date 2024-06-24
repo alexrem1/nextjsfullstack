@@ -1,5 +1,6 @@
 "use server";
 
+import { Set } from "core-js";
 import { db } from "@/lib/db";
 import { unstable_noStore as noStore } from "next/cache";
 
@@ -74,9 +75,7 @@ export default async function getProducts(
         reviews: [],
       };
 
-      // eslint-disable-next-line no-undef
       const variantIds = new Set();
-      // eslint-disable-next-line no-undef
       const reviewIds = new Set();
 
       rows.forEach((row) => {

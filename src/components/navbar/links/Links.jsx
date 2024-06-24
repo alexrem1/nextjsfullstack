@@ -5,10 +5,6 @@ import { MobileNavLinks } from "./navLink/navLink";
 import React, { useState } from "react";
 import styles from "./links.module.css";
 
-// Temporary variables to simulate authentication and admin status
-const authenticated = true;
-const isAdmin = true;
-
 const Links = ({ categories }) => {
   const links = [
     { title: "Home", path: "/" },
