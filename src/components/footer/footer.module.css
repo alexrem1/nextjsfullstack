@@ -1,0 +1,23 @@
+.footer {
+  background-color: #333;
+  color: #fff;
+}
+
+.social {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  width: 100%;
+  justify-content: space-evenly;
+}
+
+.social i,
+.social svg {
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.social i:hover,
+.social svg:hover {
+  color: #ffa500; /* Example hover color */
+}

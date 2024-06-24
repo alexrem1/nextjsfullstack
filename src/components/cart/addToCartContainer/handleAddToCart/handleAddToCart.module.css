@@ -1,0 +1,42 @@
+/* Base styles for the button */
+.addToCartButton {
+  display: inline-block;
+  padding: 15px 30px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #007bff; /* Primary color */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  width: 150px;
+}
+
+/* Hover state */
+.addToCartButton:hover {
+  background-color: #0056b3; /* Darker shade for hover */
+  transform: translateY(-2px); /* Slight lift on hover */
+}
+
+/* Active state */
+.addToCartButton:active {
+  background-color: #004080; /* Even darker shade for active */
+  transform: translateY(1px); /* Pressed effect */
+}
+
+/* Focus state for accessibility */
+.addToCartButton:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5); /* Blue outline for focus */
+}
+
+.addToCartButton svg {
+  color: white;
+}
+
+/* @media (min-width: 768px) {
+  .addToCartButton {
+    width: max-content;
+  }
+} */

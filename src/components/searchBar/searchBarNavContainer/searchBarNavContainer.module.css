@@ -1,0 +1,16 @@
+.searchNavContainer p {
+  display: none;
+}
+.searchNavContainer {
+  cursor: pointer;
+}
+@media (min-width: 768px) {
+  .searchNavContainer {
+    display: flex;
+    align-items: center;
+  }
+
+  .searchNavContainer p {
+    display: block;
+  }
+}

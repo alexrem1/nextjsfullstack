@@ -1,0 +1,27 @@
+.container.active {
+  text-decoration-line: underline;
+  font-weight: 600;
+  text-underline-position: under;
+}
+
+.container {
+  text-decoration-line: none;
+  font-weight: normal;
+  text-underline-position: auto;
+  transition: text-decoration-line 0.3s ease, font-weight 0.3s ease,
+    text-underline-position 0.3s ease;
+}
+
+.productsContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.dropdown {
+  display: flex;
+  align-items: center;
+}
+
+.menuOpen {
+  background-color: red;
+}

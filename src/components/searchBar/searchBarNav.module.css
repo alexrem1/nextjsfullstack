@@ -1,0 +1,79 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #9797a569;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  z-index: 1000;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  opacity: 0;
+  visibility: hidden;
+}
+.overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+.searchBar {
+  background: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* max-width: 450px;
+  width: 100%; */
+  z-index: 1001;
+  position: relative;
+}
+
+.searchBar .closeSearch {
+  align-self: end;
+}
+
+.searchBar input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.searchBar > button {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.searchBar button {
+  border: none;
+  background-color: transparent;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  position: absolute;
+  right: 14px;
+  top: 10px;
+}
+
+.searchBarContainer {
+  position: absolute;
+  right: 0;
+  top: 0;
+  left: 0;
+  z-index: 1001;
+  transform: translateY(-100%);
+  transition: transform 0.3s ease, visibility 0.3s ease;
+  visibility: hidden;
+}
+
+.searchBarContainer.open {
+  transform: translateY(0);
+  visibility: visible;
+}
+
+.searchBar form {
+  position: relative;
+}

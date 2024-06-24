@@ -1,0 +1,70 @@
+.imgContainer {
+  position: relative;
+  height: 250px;
+  width: 250px;
+  max-width: 800px;
+}
+
+.counterContainer {
+  display: flex;
+  justify-content: flex-start;
+  gap: 20px;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 250px;
+}
+
+.info button {
+  width: max-content;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.warningMessage {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  margin: 20px 0;
+  background-color: #ffdddd; /* Light red background for warning */
+  border-left: 6px solid #f44336; /* Red border to the left */
+  border-radius: 5px;
+  width: 250px;
+}
+
+.warningIcon {
+  margin-right: 10px;
+  font-size: 24px; /* Adjust size as needed */
+  color: #f44336; /* Red color for the icon */
+}
+
+.warningMessage p {
+  margin: 0;
+  font-size: 16px;
+  color: #d8000c; /* Dark red text for the message */
+}
+
+@media (min-width: 590px) {
+  .container {
+    flex-direction: row;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    align-items: unset;
+    justify-content: unset;
+    padding: 30px;
+    width: 100%;
+  }
+
+  .info {
+    width: unset;
+    justify-content: space-between;
+  }
+}

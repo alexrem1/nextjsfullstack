@@ -1,0 +1,19 @@
+.starRating {
+  display: flex;
+}
+
+.starRating svg {
+  width: 34px;
+  height: 34px;
+}
+
+.filledStar {
+  fill: gold;
+  cursor: pointer;
+  stroke: gold;
+}
+
+.emptyStar {
+  cursor: pointer;
+  stroke: gold;
+}

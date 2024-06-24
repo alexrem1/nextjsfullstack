@@ -1,0 +1,36 @@
+.filterResults {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 20px auto 0 auto;
+  align-items: center;
+}
+
+.filterResults > p {
+  flex: 1;
+  text-align: center;
+}
+
+.noResults {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 100px);
+}
+
+@media (min-width: 590px) {
+  .filterResults {
+    max-width: 550px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .filterResults {
+    max-width: 850px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .filterResults {
+    max-width: 1150px;
+  }
+}

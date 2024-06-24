@@ -1,0 +1,23 @@
+.variantContainer {
+  display: flex;
+  justify-content: flex-start;
+  gap: 25px;
+}
+
+.variantContainer button {
+  padding: 10px;
+  border: 1px solid #ccc;
+  background-color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.variantContainer button:hover {
+  background-color: #f0f0f0;
+}
+
+.variantContainer button.active {
+  background-color: #007bff;
+  color: white;
+  border-color: #007bff;
+}

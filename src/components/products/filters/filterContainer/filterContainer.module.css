@@ -1,0 +1,63 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #9797a569;
+  display: flex;
+  /* justify-content: center; */
+  align-items: baseline;
+  z-index: 1000;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.filterContainer {
+  background: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 80%;
+  height: 100%;
+  z-index: 1001;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease, visibility 0.3s ease;
+  visibility: hidden;
+}
+
+.filterContainer.open {
+  visibility: visible;
+  transform: translateX(0);
+}
+
+.filterContainer .closeFilter {
+  position: absolute;
+  right: 0;
+  margin: 10px;
+}
+
+.container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.container .containerFilter {
+  cursor: pointer;
+  display: flex;
+  gap: 10px;
+}
+
+@media (min-width: 768px) {
+  .container {
+    display: none;
+  }
+}

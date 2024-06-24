@@ -1,0 +1,22 @@
+/* overall star rating  */
+.reviewStarsContainer {
+  position: relative;
+  white-space: nowrap;
+  display: flex;
+}
+
+.reviewStarCover {
+  background: white;
+  height: 100%;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.reviewStar {
+  width: 24px;
+  height: 24px;
+  fill: gold;
+  stroke: gold;
+}

@@ -1,0 +1,37 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  min-height: calc(100vh - 71px); /* Adjusted for full viewport height */
+  gap: 10px;
+}
+
+.message {
+  font-size: 24px;
+  text-align: center;
+  color: #ff6347; /* Tomato red color */
+}
+
+.sessionInfo {
+  background-color: #f0f0f0; /* Light grey background */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Soft shadow effect */
+  max-width: 400px;
+}
+
+.sessionInfo p {
+  margin: 10px 0;
+  overflow-wrap: break-word;
+}
+
+.sessionInfo p:first-child {
+  font-weight: bold;
+}
+
+.container a {
+  color: green;
+  text-decoration: underline;
+}

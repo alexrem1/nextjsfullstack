@@ -1,0 +1,65 @@
+/* .container {
+  border: 1px solid green;
+  display: flex;
+  justify-content: space-evenly;
+  height: 100px;
+  align-items: center;
+} */
+
+nav.container {
+  display: grid;
+  grid-template-columns: [full-width-start] 25% [content-start] 1fr [content-end] 25% [full-width-end];
+  grid-template-rows: 70px;
+  border-bottom: 1px solid #000;
+}
+
+nav.container .left {
+  grid-column: full-width-start;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+nav.container .middle h1 {
+  font-family: BenguiatStd-Bold;
+  font-weight: normal;
+  font-style: normal;
+  color: #000;
+}
+
+nav.container .middle {
+  grid-column: content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+nav.container .right {
+  grid-column: content-end;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+nav.container .right a svg {
+  height: 40px;
+  width: 40px;
+}
+
+nav.container .right a {
+  position: relative;
+}
+nav.container .right .cart {
+  position: absolute;
+  right: 4px;
+  top: -15px;
+}
+.subLinks {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px; /* Indent sub-links */
+}
+
+@media (min-width: 768px) {
+}

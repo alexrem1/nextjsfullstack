@@ -1,0 +1,116 @@
+.writeReviewContainer {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.writeReviewForm {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.writeReviewInput {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.writeReviewInput textarea,
+.writeReviewInput input {
+  all: unset;
+  border: 1px solid black;
+  padding: 10px;
+  overflow-wrap: break-word;
+  min-width: 260px;
+}
+
+/* buttons  */
+.submission {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  gap: 10px;
+}
+
+.submission button {
+  flex: 1;
+  padding: 10px;
+  font-size: 110%;
+  color: #fff;
+  background-color: #28a745;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.submission button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.submission button:not(:disabled):hover {
+  background-color: #218838;
+  transform: scale(1.05);
+}
+
+.submission button:not(:disabled):active {
+  background-color: #1e7e34;
+  transform: scale(1);
+}
+
+.submission button:first-child {
+  background-color: #0070f3;
+}
+
+.submission button:first-child:not(:disabled):hover {
+  background-color: #005bb5;
+}
+
+.submission button:first-child:not(:disabled):active {
+  background-color: #004494;
+}
+
+/* warning  */
+.warningMessage {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  margin: 20px 0;
+  background-color: #ffdddd;
+  border-left: 6px solid #f44336;
+  border-radius: 5px;
+  width: 210px;
+}
+
+.warningIcon {
+  margin-right: 10px;
+  color: #f44336;
+}
+
+.warningMessage p {
+  margin: 0;
+  color: #d8000c;
+}
+
+@media (min-width: 768px) {
+  .writeReviewContainer {
+    max-width: 80%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .writeReviewContainer {
+    max-width: 70%;
+  }
+}
+
+@media (min-width: 1400px) {
+  .writeReviewContainer {
+    max-width: 60%;
+  }
+}

@@ -1,0 +1,37 @@
+.sliderItem,
+.allProducts {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  height: 44px;
+  /* padding: 10px;*/
+  /* margin: 10px 0; */
+  /* background-color: #f5f5f5; */
+  border-radius: 10px;
+}
+
+.sliderItem a,
+.allProducts {
+  margin: 0;
+  font-size: 16px;
+  text-align: center;
+}
+.sliderContainer {
+  position: relative;
+  margin-top: 5px;
+}
+
+.sliderContainer > p {
+  font-weight: 600;
+  position: absolute;
+  /* overflow: hidden; */
+  z-index: 1;
+  /* background: red; */
+  height: 44px;
+  display: flex;
+  align-items: center;
+  /* margin: 10px 0; */
+}
+
+@media (min-width: 768px) {
+}
