@@ -3,3 +3,12 @@
   display: flex;
   flex-direction: column;
 }
+
+.ogPrice {
+  text-decoration: line-through;
+  opacity: 0.4;
+}
+
+.discount {
+  color: red;
+}

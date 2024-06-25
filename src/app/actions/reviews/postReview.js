@@ -5,9 +5,19 @@ import { revalidatePath } from "next/cache";
 
 export async function postReview(data, idProduct) {
   const insertQuery =
-    "INSERT INTO reviews (idProduct, comment, rating, name) VALUES (?, ?, ?, ?)";
+    "INSERT INTO reviews (idProduct, comment, rating, name, date) VALUES (?, ?, ?, ?, ?)";
 
-  const values = [idProduct, data.comment, data.rating, data.name];
+  const date = new Date();
+  const formattedDate =
+    date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
+
+  const values = [
+    idProduct,
+    data.comment,
+    data.rating,
+    data.name,
+    formattedDate,
+  ];
 
   console.log(data);
   if (!data) {

@@ -3,7 +3,10 @@
   height: 250px;
   width: 250px;
   max-width: 800px;
-  margin-bottom: 20px;
+}
+
+.individual {
+  width: 250px;
 }
 
 .container {
@@ -13,6 +16,10 @@
   gap: 50px;
   margin: 50px auto;
   flex-wrap: wrap;
+}
+
+.container h3 {
+  min-height: 67px;
 }
 
 .position > img {

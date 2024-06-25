@@ -34,7 +34,19 @@ function ReviewsAverage({ reviews }) {
           <span>{reviews.length} reviews</span>
         </div>
       ) : (
-        <span>{reviews.length} reviews</span>
+        <>
+          {reviews.length === 0 ? (
+            <div
+              className={styles.reviewStarsContainer}
+              style={{ height: "24px" }}
+            ></div>
+          ) : (
+            <div className={styles.reviewStarsContainer}>
+              {renderStars(averageRating)}
+              <span>{reviews.length} reviews</span>
+            </div>
+          )}
+        </>
       )}
     </div>
   );

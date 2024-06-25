@@ -29,12 +29,26 @@ function AddToCartContainer({ product }) {
     setProductVariant(product);
   }, []);
 
+  console.log(selectedVariant);
+
   if (!selectedVariant) return <div>Loading...</div>;
   const stock = availability(selectedVariant.productVariantStock, counter);
   const price = setPrice(counter, selectedVariant.productVariantPrice);
+
   return (
     <div className={styles.container}>
-      <h5>£{price}</h5>
+      <div>
+        {selectedVariant.productOriginalPrice ? (
+          <>
+            <h5 className={styles.ogPrice}>
+              £{selectedVariant.productOriginalPrice}
+            </h5>
+            <h3 className={styles.discount}>£{price}</h3>
+          </>
+        ) : (
+          <h4>£{price}</h4>
+        )}
+      </div>
 
       <SelectVariant
         setAddMessage={setErrorMessage}

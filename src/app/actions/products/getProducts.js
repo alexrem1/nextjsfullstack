@@ -25,11 +25,13 @@ export default async function getProducts(
       v.productVariantName, 
       v.productVariantPrice, 
       v.productVariantStock,
+      v.productOriginalPrice,
       r.reviewsId,
       r.idProduct,
       r.comment,
       r.rating,
-      r.name
+      r.name,
+      r.date
     FROM 
       products p
     LEFT JOIN 
@@ -86,6 +88,7 @@ export default async function getProducts(
             productVariantName: row.productVariantName,
             productVariantPrice: row.productVariantPrice,
             productVariantStock: row.productVariantStock,
+            productOriginalPrice: row.productOriginalPrice,
           });
           variantIds.add(row.productVariantId);
         }
@@ -97,10 +100,14 @@ export default async function getProducts(
             comment: row.comment,
             rating: row.rating,
             name: row.name,
+            date: row.date,
           });
           reviewIds.add(row.reviewsId);
         }
       });
+
+      product.reviews.sort((a, b) => b.reviewsId - a.reviewsId);
+
       return product;
     }
 
@@ -116,11 +123,13 @@ export default async function getProducts(
         productVariantName,
         productVariantPrice,
         productVariantStock,
+        productOriginalPrice,
         reviewsId,
         idProduct,
         comment,
         rating,
         name,
+        date,
       } = row;
 
       if (!acc[productId]) {
@@ -147,6 +156,7 @@ export default async function getProducts(
           productVariantName,
           productVariantPrice,
           productVariantStock,
+          productOriginalPrice,
         });
       }
 
@@ -160,6 +170,7 @@ export default async function getProducts(
           comment,
           rating,
           name,
+          date,
         });
       }
 
@@ -204,8 +215,8 @@ export default async function getProducts(
 
     return Object.values(sortedProducts);
   } catch (err) {
-    console.error("Error fetching users:", err);
-    throw new Error("Error fetching users");
+    console.error("Error fetching products:", err);
+    throw new Error("Error fetching products");
   } finally {
     if (connection) {
       connection.end();

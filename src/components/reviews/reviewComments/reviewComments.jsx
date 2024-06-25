@@ -41,6 +41,8 @@ function ReviewComments({ reviewCommentOpen, selectedRating, reviews }) {
     ));
   };
 
+  console.log(currentReviews);
+
   return (
     <>
       {reviewCommentOpen && (
@@ -52,9 +54,14 @@ function ReviewComments({ reviewCommentOpen, selectedRating, reviews }) {
                   <div className={styles.starRating}>
                     {renderStars(review.rating)}
                   </div>
-                  <p>
-                    <strong>{review.name}</strong> ({review.rating} stars)
-                  </p>
+                  <div className={styles.date}>
+                    <h3>
+                      <strong>{review.name}</strong>
+                    </h3>
+                    <p>
+                      <strong>{review.date}</strong>
+                    </p>
+                  </div>
                   <p>{review.comment}</p>
                 </div>
               ))}

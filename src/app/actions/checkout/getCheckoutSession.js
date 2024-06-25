@@ -91,7 +91,7 @@ export async function getCheckoutSession(session_id) {
                 )
                 .map((product) => `${product.quantity}x ${product.description}`)
                 .join(", ")}</p></li>
-                <li><p>and it'll be sent to the provided shipping address:  ${
+                <li><p>It'll be sent to the provided shipping address:  ${
                   session.shipping_details.address.line1
                 }, ${
           session.shipping_details.address.line2 !== null
