@@ -1,7 +1,6 @@
 .container {
   margin: 20px 0;
   width: max-content;
-  padding: 10px;
   display: flex;
   align-items: center;
   gap: 5px;

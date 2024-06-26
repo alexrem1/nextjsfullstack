@@ -75,7 +75,7 @@ function ReviewComments({ reviewCommentOpen, selectedRating, reviews }) {
           )}
         </div>
       )}
-      {reviewCommentOpen && (
+      {reviewCommentOpen && currentReviews.length > 0 && (
         <div className={styles.pagination}>
           {Array.from({
             length: Math.ceil(filteredReviews.length / reviewsPerPage),

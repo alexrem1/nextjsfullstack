@@ -1,6 +1,6 @@
 # Alexquisite
 
-![Responsiveness](public/alexequisite.png)
+![Responsiveness](public/alexquisite.png)
 
 ### **[View Demo](https://alexquisite.vercel.app/)**
 

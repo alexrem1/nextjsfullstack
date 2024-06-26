@@ -99,6 +99,18 @@ function CartContainer() {
                 availability={availability}
               />
             ))}
+            <div className={styles.notification}>
+              <div className={styles.encouragement}>
+                <p>
+                  For testing purposes, our Stripe payment processor is
+                  currently in test mode. Use the card number 4242 4242 4242
+                  4242 for all transactions. Any other card number, including
+                  your own personal card, will not be accepted and will be
+                  blocked by Stripe.
+                </p>
+              </div>
+            </div>
+
             <div className={styles.deliveryContainer}>
               <>
                 <div className={styles.notification}>

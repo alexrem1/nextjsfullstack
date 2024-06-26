@@ -40,9 +40,10 @@
   margin: 0 5px;
   padding: 5px 10px;
   cursor: pointer;
+  width: 35px;
 }
 
 .pagination .active {
   font-weight: bold;
-  text-decoration: underline;
+  background-color: gold;
 }
