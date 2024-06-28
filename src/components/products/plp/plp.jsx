@@ -36,7 +36,13 @@ function Plp({ products, searchParams }) {
                 <div>
                   <p>
                     From:{" "}
-                    <strong> £{product.variants[0].productVariantPrice}</strong>
+                    <strong>
+                      {" "}
+                      £
+                      {parseFloat(
+                        product.variants[0].productVariantPrice
+                      ).toFixed(2)}
+                    </strong>
                   </p>
                 </div>
               )}

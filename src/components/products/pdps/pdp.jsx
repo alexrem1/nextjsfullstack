@@ -5,8 +5,12 @@ import AddToCartContainer from "@/components/cart/addToCartContainer/addToCartCo
 import Accordion from "./accordion/accordion";
 import Reviews from "@/components/reviews/reviews";
 import ReviewsAverage from "@/components/reviews/reviewsAverage/reviewsAverage";
+import { recommendations } from "@/app/actions/recommendations/recommendations";
+import RecentlyBought from "@/components/recommendations/recentlyBought";
 
-function Pdp({ params, searchParams, product }) {
+async function Pdp({ params, searchParams, product }) {
+  const rec = await recommendations();
+
   return (
     <>
       <div className={styles.container}>
@@ -32,6 +36,7 @@ function Pdp({ params, searchParams, product }) {
           <Accordion product={product} />
         </div>
       </div>
+      <RecentlyBought recommendations={rec} />
       <Reviews reviews={product.reviews} params={params} />
     </>
   );

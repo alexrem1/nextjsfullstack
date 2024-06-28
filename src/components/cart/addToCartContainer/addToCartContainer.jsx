@@ -29,8 +29,6 @@ function AddToCartContainer({ product }) {
     setProductVariant(product);
   }, []);
 
-  console.log(selectedVariant);
-
   if (!selectedVariant) return <div>Loading...</div>;
   const stock = availability(selectedVariant.productVariantStock, counter);
   const price = setPrice(counter, selectedVariant.productVariantPrice);

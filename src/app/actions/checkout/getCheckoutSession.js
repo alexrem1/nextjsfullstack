@@ -2,6 +2,7 @@
 import { db } from "@/lib/db";
 import Stripe from "stripe";
 import nodemailer from "nodemailer";
+import { Set } from "core-js";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
@@ -13,14 +14,14 @@ export async function getCheckoutSession(session_id) {
   let connection;
 
   try {
+    connection = await db.getConnection();
+
     const session = await stripe.checkout.sessions.retrieve(session_id, {
       expand: ["line_items"],
     });
 
     if (session.payment_status === "paid" && session.status === "complete") {
-      connection = await db.getConnection();
-
-      // Check if session_id is already in the database
+      // // Check if session_id is already in the database
       const checkQuery =
         "SELECT COUNT(*) AS count FROM orders WHERE session_id = ?";
       const [rows] = await connection.query(checkQuery, [session.id]);
@@ -65,7 +66,34 @@ export async function getCheckoutSession(session_id) {
         } `,
       ];
 
-      await connection.query(insertQuery, values);
+      const [result] = await connection.query(insertQuery, values);
+      const newOrderId = result.insertId;
+
+      const uniqueProductNames = new Set();
+
+      session.line_items.data
+        .filter((product) => !product.description.includes("Delivery Cost"))
+        .map(async (product) => {
+          try {
+            const productDesc = product.description.split(" - ")[0];
+            if (!uniqueProductNames.has(productDesc)) {
+              uniqueProductNames.add(productDesc);
+
+              const q = `
+                INSERT INTO recommendations (orderId, productsRec) VALUES (?, ?);
+              `;
+              const recValues = [newOrderId, productDesc];
+              await connection.query(q, recValues);
+              console.log("Inserted product description:", productDesc);
+            }
+          } catch (error) {
+            console.error(
+              "Error inserting produc:",
+              product.description,
+              error
+            );
+          }
+        });
 
       // Send email notification
       var transporter = nodemailer.createTransport({

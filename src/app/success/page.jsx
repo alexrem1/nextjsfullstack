@@ -20,8 +20,6 @@ async function Success({ searchParams }) {
     );
   }
 
-  console.log(session, error, paymentMade);
-
   return (
     <div>
       <PaymentSuccessful

@@ -48,7 +48,12 @@ function ReviewsUI({
             <span>{averageRating.toFixed(2)} out of 5</span>
           </div>
 
-          <span>Based on {reviews.length} reviews</span>
+          <span>
+            Based on{" "}
+            {reviews.length > 1
+              ? ` ${reviews.length} reviews`
+              : ` ${reviews.length} review`}
+          </span>
         </div>
       )}
       {reviews.length > 0 ? (

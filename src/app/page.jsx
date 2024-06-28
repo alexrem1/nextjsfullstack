@@ -24,13 +24,7 @@ async function Homepage() {
           <CategoriesContainer />
         </div>
         <div className={styles.imgContainer}>
-          <Image
-            src="/landing.jpg"
-            alt="hero"
-            layout="fill"
-            objectFit="cover"
-            priority
-          />
+          <Image src="/landing.jpg" alt="hero" fill cover="true" priority />
           <div className={styles.overlay}>
             <h1 className={styles.heroText}>
               Welcome to Alexquisite Patisserie

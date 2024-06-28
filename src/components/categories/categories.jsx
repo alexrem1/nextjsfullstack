@@ -15,7 +15,7 @@ function Categories({ categories }) {
   const sliderRef = useRef(null);
 
   const settings = {
-    speed: 1000,
+    speed: 500,
     slidesToShow: 5,
     slidesToScroll: 1,
     initialSlide: 0,

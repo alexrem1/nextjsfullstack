@@ -31,7 +31,11 @@ function ReviewsAverage({ reviews }) {
       {reviews.length > 0 ? (
         <div className={styles.reviewStarsContainer}>
           {renderStars(averageRating)}
-          <span>{reviews.length} reviews</span>
+          <span>
+            {reviews.length > 1
+              ? ` ${reviews.length} reviews`
+              : ` ${reviews.length} review`}
+          </span>
         </div>
       ) : (
         <>
