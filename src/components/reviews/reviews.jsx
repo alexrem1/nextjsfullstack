@@ -7,16 +7,18 @@ import ReviewForm from "./reviewForm/reviewForm";
 import ReviewsUI from "./reviewsUI/reviewsUI";
 import ReviewComments from "./reviewComments/reviewComments";
 
-const Reviews = ({ reviews, params }) => {
+const Reviews = ({
+  reviews,
+  params,
+  reviewCommentOpen,
+  setReviewCommentOpen,
+}) => {
   const [reviewOpen, setReviewOpen] = useState(false);
-  const [reviewCommentOpen, setReviewCommentOpen] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [selectedRating, setSelectedRating] = useState(null);
 
   const toggleReview = () => {
-    setReviewOpen((prev) => {
-      return !prev;
-    });
+    setReviewOpen((prev) => !prev);
     setIsSubmitted(false);
   };
 
@@ -28,7 +30,9 @@ const Reviews = ({ reviews, params }) => {
         reviews={reviews}
         reviewOpen={reviewOpen}
         setSelectedRating={setSelectedRating}
+        reviewCommentOpen={reviewCommentOpen}
         setReviewCommentOpen={setReviewCommentOpen}
+        selectedRating={selectedRating}
       />
       {reviewOpen && (
         <ReviewForm

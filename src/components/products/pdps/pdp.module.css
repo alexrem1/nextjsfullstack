@@ -10,6 +10,11 @@
   margin: 20px;
 }
 
+.info > :first-child:hover {
+  cursor: pointer;
+  opacity: 0.3;
+}
+
 .container {
   margin: 0 auto;
   /* min-height: calc(100% - 71px); */

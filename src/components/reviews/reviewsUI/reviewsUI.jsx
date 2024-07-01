@@ -6,6 +6,8 @@ function ReviewsUI({
   reviewOpen,
   setSelectedRating,
   setReviewCommentOpen,
+  reviewCommentOpen,
+  selectedRating,
 }) {
   // Function to count star ratings
   const countStarRatings = (reviews, star) => {
@@ -43,7 +45,15 @@ function ReviewsUI({
     <div className={styles.innerContainer}>
       {reviews.length > 0 && (
         <div className={styles.averageContainer}>
-          <div className={styles.reviewStarsContainer}>
+          <div
+            className={`${styles.reviewStarsContainer} ${styles.onHov}`}
+            onClick={() => {
+              reviewCommentOpen === true && selectedRating !== null
+                ? setSelectedRating(null)
+                : setReviewCommentOpen((prev) => !prev);
+              setSelectedRating(null);
+            }}
+          >
             {renderStars(averageRating)}
             <span>{averageRating.toFixed(2)} out of 5</span>
           </div>

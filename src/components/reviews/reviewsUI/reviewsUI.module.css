@@ -13,6 +13,11 @@
   white-space: nowrap;
   display: flex;
   justify-content: center;
+  cursor: pointer;
+}
+
+.onHov:hover {
+  opacity: 0.3;
 }
 
 .reviewStar {

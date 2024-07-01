@@ -41,8 +41,6 @@ function ReviewComments({ reviewCommentOpen, selectedRating, reviews }) {
     ));
   };
 
-  console.log(currentReviews);
-
   return (
     <>
       {reviewCommentOpen && (

@@ -30,5 +30,10 @@
 
 .slider > div > div {
   display: flex;
-  gap: 50px;
+  gap: 25px;
+}
+@media (min-width: 1024px) {
+  .slider > div > div {
+    gap: 50px;
+  }
 }

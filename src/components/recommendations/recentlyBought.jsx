@@ -33,12 +33,13 @@ function RecentlyBought({ recommendations }) {
   }
   const settings = {
     speed: 300,
-    slidesToShow: 4,
+    slidesToShow: recommendations.length > 2 ? 3 : 2,
     slidesToScroll: 1,
     initialSlide: 0,
     autoplay: true,
     autoplaySpeed: 3000,
     pauseOnHover: true,
+    infinite: true,
     // nextArrow: <SampleNextArrow />,
     // prevArrow: <SamplePrevArrow />,
     responsive: [
@@ -76,15 +77,15 @@ function RecentlyBought({ recommendations }) {
       <Slider {...settings} className={styles.slider}>
         {recommendations.map((recent) => (
           <div key={recent.productId}>
+            <div className={styles.imgContainer}>
+              <Image
+                src={recent.productImage}
+                alt={recent.productImage}
+                fill
+                priority
+              />
+            </div>
             <Link href={`/products/${recent.productId}`}>
-              <div className={styles.imgContainer}>
-                <Image
-                  src={recent.productImage}
-                  alt={recent.productImage}
-                  fill
-                  priority
-                />
-              </div>
               <h3>{recent.productName}</h3>
               <ReviewsAverage reviews={recent.reviews} />
             </Link>

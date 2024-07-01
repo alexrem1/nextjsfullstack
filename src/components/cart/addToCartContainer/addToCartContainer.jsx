@@ -39,7 +39,7 @@ function AddToCartContainer({ product }) {
         {selectedVariant.productOriginalPrice ? (
           <>
             <h5 className={styles.ogPrice}>
-              £{selectedVariant.productOriginalPrice}
+              £{(selectedVariant.productOriginalPrice * counter).toFixed(2)}
             </h5>
             <h3 className={styles.discount}>£{price}</h3>
           </>

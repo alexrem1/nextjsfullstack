@@ -1,6 +1,6 @@
 import { Star } from "lucide-react";
 import styles from "./reviewsAverage.module.css";
-function ReviewsAverage({ reviews }) {
+function ReviewsAverage({ reviews, toggleReviewComments }) {
   // Function to calculate average rating
   const calculateAverageRating = (reviews) => {
     if (reviews.length === 0) return 0;
@@ -29,7 +29,10 @@ function ReviewsAverage({ reviews }) {
   return (
     <div className={styles.averageContainer}>
       {reviews.length > 0 ? (
-        <div className={styles.reviewStarsContainer}>
+        <div
+          className={styles.reviewStarsContainer}
+          onClick={toggleReviewComments}
+        >
           {renderStars(averageRating)}
           <span>
             {reviews.length > 1
