@@ -97,8 +97,7 @@ export async function getCheckoutSession(session_id) {
 
       // Send email notification
       var transporter = nodemailer.createTransport({
-        service: "hotmail",
-        port: "993",
+        service: "gmail",
         auth: {
           user: process.env.EMAIL,
           pass: process.env.PASSWORD,
