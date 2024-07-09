@@ -1,0 +1,13 @@
+.container {
+  min-height: calc(100vh - 71px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.container a {
+  color: red;
+  text-decoration: underline;
+}
