@@ -1,7 +1,5 @@
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
-import { db } from "@/lib/db";
-import bcrypt from "bcryptjs";
 
 export const BASE_PATH = "/api/auth";
 
@@ -22,43 +20,15 @@ const authOptions = {
           placeholder: "Enter your password",
         },
       },
-      async authorize(credentials, req) {
-        let connection;
-        try {
-          connection = await db.getConnection();
-          const [users] = await connection.query(
-            "SELECT * FROM users WHERE email = ?",
-            [credentials.email]
-          );
-
-          if (users.length === 0) {
-            throw new Error("No such user found");
-          }
-
-          const user = users[0];
-
-          if (!user.password) {
-            throw new Error("User has no password set");
-          }
-
-          const isPasswordValid = await bcrypt.compare(
-            credentials.password,
-            user.password
-          );
-
-          if (!isPasswordValid) {
-            return null;
-          }
-
-          return { id: user.userId, name: user.name, email: user.email };
-        } catch (error) {
-          console.error("Authorize error:", error);
-          return null;
-        } finally {
-          if (connection) {
-            connection.end();
-          }
+      async authorize(credentials) {
+        if (!credentials.email || !credentials.password) {
+          return { error: "Invalid credentials" };
         }
+        return {
+          id: credentials.id,
+          name: credentials.name,
+          email: credentials.email,
+        };
       },
     }),
   ],

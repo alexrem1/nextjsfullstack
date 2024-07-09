@@ -4,8 +4,9 @@ import getUser from "@/app/actions/getUser/getUser";
 import ProfileDetails from "@/components/profile/profileDetails/profileDetails";
 import Orders from "@/components/profile/orders/orders";
 async function Account() {
-  //   const router = useRouter();
   const session = await getSession();
+
+  console.log(session);
 
   const userInfo = await getUser(session?.id);
 
