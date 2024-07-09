@@ -16,6 +16,7 @@
   border-left: 6px solid #4caf50;
   border-radius: 5px;
   width: 100%;
+  max-width: 600px;
 }
 
 .success p {

@@ -1,4 +1,3 @@
-// import { useRouter } from "next/navigation";
 import styles from "./page.module.css";
 import { getSession } from "@/lib/getSession";
 import getUser from "@/app/actions/getUser/getUser";
@@ -8,7 +7,7 @@ async function Account() {
   //   const router = useRouter();
   const session = await getSession();
 
-  const userInfo = await getUser(session.id);
+  const userInfo = await getUser(session?.id);
 
   if (userInfo.error) {
     return (

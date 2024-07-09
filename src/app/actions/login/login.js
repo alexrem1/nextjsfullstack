@@ -1,7 +1,7 @@
 "use server";
 
 import { loginSchema } from "@/lib/schemas/loginSchema";
-import { signIn } from "@/app/auth";
+import { signIn } from "@/auth";
 
 export default async function login(data) {
   try {
