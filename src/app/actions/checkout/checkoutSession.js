@@ -12,7 +12,6 @@ export async function checkoutSession(
   const testy = JSON.parse(JSON.stringify(cartItems));
 
   const { items } = testy; // Create line items
-  console.log(items);
   const lineItems = items.map((item) => ({
     price_data: {
       currency: "gbp",

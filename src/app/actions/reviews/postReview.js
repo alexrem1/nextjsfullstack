@@ -19,7 +19,6 @@ export async function postReview(data, idProduct) {
     formattedDate,
   ];
 
-  console.log(data);
   if (!data) {
     return { error: "Form has not been completed" };
   }
@@ -29,9 +28,9 @@ export async function postReview(data, idProduct) {
     connection = await db.getConnection();
     await connection.query(insertQuery, values);
     await revalidatePath(`/product/${idProduct}`);
-    return console.log("success");
+
+    return { success: true };
   } catch (error) {
-    console.log(error.message, "mess");
     return { error: error.message };
   } finally {
     if (connection) {

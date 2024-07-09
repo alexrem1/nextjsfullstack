@@ -6,7 +6,6 @@ import styles from "./searchBarNavContainer.module.css";
 
 export default function SearchBarNavContainer() {
   const [showSearch, setShowSearch] = useState(false);
-  console.log(showSearch);
 
   function handleSearchIconClick() {
     setShowSearch((prev) => !prev);

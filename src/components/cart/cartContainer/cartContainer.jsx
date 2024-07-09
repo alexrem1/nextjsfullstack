@@ -49,7 +49,6 @@ function CartContainer() {
     });
 
     if (result.error) {
-      console.error(result.error.message);
       setIsCheckout(false);
     }
   };

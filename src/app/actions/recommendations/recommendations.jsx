@@ -118,7 +118,6 @@ export async function recommendations() {
 
     return allProducts;
   } catch (err) {
-    console.error("Error fetching recommendations:", err);
     return { error: "Error fetching recommendations" };
   } finally {
     if (connection) {

@@ -44,7 +44,6 @@ export const POST = async (req) => {
         success_url: `${origin}/success?session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: `${origin}/cancel?session_id={CHECKOUT_SESSION_ID}`,
       });
-      console.log(session, lineItems);
 
       return NextResponse.json({ id: session.id }, { status: 200 });
     } catch (error) {

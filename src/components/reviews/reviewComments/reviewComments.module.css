@@ -1,11 +1,9 @@
 .reviewComments {
-  margin: 0 auto;
   border-bottom: 1px solid gold;
-  /* padding: 20px; */
   display: flex;
   flex-direction: column;
   gap: 20px;
-  margin: 10px;
+  margin: 0 auto;
 }
 
 .reviewComments .date {
@@ -46,4 +44,22 @@
 .pagination .active {
   font-weight: bold;
   background-color: gold;
+}
+
+@media (min-width: 768px) {
+  .reviewComments {
+    max-width: 80%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .reviewComments {
+    max-width: 70%;
+  }
+}
+
+@media (min-width: 1400px) {
+  .reviewComments {
+    max-width: 60%;
+  }
 }

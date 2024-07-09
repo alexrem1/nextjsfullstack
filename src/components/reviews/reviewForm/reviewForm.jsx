@@ -28,7 +28,6 @@ function ReviewForm({ setReviewOpen, setIsSubmitted, reviewOpen, params }) {
   });
 
   async function onSubmit(data) {
-    console.log(data);
     await postReview(data, params.slug);
     setReviewOpen(false);
     setIsSubmitted(true);

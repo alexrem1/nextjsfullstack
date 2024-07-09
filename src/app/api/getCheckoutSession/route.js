@@ -5,7 +5,6 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 export async function GET(req) {
   const { searchParams } = new URL(req.url);
-  console.log(searchParams);
   const session_id = searchParams.get("session_id");
 
   if (!session_id) {
@@ -18,7 +17,6 @@ export async function GET(req) {
   try {
     const session = await stripe.checkout.sessions.retrieve(session_id);
 
-    // console.log(session);
     return NextResponse.json(session, { status: 200 });
   } catch (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });

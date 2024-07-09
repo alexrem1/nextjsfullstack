@@ -114,16 +114,12 @@ export function CartProvider({ children }) {
     return acc + quantity * parseFloat(selectedVariant.productVariantPrice);
   }, 0);
 
-  // const TwoDecimalsTotalPrice = parseFloat(totalPrice.toFixed(2));
-
   const deliveryCost =
     totalPrice >= deliveryThreshold
       ? deliveryPrices.free
       : deliveryPrices[deliveryOption];
 
   const TotalIncDeliveryCost = (deliveryCost + totalPrice).toFixed(2);
-
-  // console.log(TotalIncDeliveryCost, TwoDecimalsTotalPrice);
 
   const availability = (stock, quantity) => {
     return stock - quantity;
