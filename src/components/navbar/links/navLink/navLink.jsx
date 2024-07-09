@@ -12,11 +12,9 @@ export const DesktopNavLinks = ({ item, toggleSubLinks, productsOpen }) => {
     const categorySearch = searchParams.get("cat");
 
     if (item.path === pathName && !categorySearch) {
-      console.log("item is no dog", item);
       return true;
     }
     if (item.path === "" && categorySearch) {
-      console.log("dog");
       return true;
     }
     if (item.path.startsWith("/products") && pathName.startsWith("/products")) {
@@ -59,18 +57,15 @@ export const MobileNavLinks = ({
     toggleMenu();
     window.scrollTo(0, 0);
     setProductsOpen(false);
-    console.log("doing it");
   }
 
   const isActive = () => {
     const categorySearch = searchParams.get("cat");
 
     if (item.path === pathName && !categorySearch) {
-      console.log("item is no dog", item);
       return true;
     }
     if (item.path === "" && categorySearch) {
-      console.log("dog");
       return true;
     }
     if (item.path.startsWith("/products") && pathName.startsWith("/products")) {
@@ -82,7 +77,6 @@ export const MobileNavLinks = ({
     return false;
   };
 
-  console.log(productsOpen);
   return (
     <Link
       href={item.path}

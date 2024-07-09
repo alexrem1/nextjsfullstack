@@ -102,13 +102,8 @@
   display: flex;
   flex-direction: column;
   margin-left: 20px; /* Indent sub-links */
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  gap: 10px;
-}
 
-.subLinks.menuOpen {
-  opacity: 1;
+  gap: 10px;
 }
 
 .container svg {

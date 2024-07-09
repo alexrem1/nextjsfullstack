@@ -4,8 +4,12 @@ import { Menu, X } from "lucide-react";
 import { MobileNavLinks } from "./navLink/navLink";
 import React, { useState } from "react";
 import styles from "./links.module.css";
+import { useSession } from "next-auth/react";
+import { signOut } from "@/app/authHelpers";
 
 const Links = ({ categories }) => {
+  const { data: session } = useSession();
+
   const links = [
     { title: "Home", path: "/" },
     { title: "Shop all Products", path: "/products" },
@@ -28,7 +32,6 @@ const Links = ({ categories }) => {
 
   const toggleProductsMenu = () => {
     setProductsOpen((prev) => !prev);
-    console.log("buscuits");
   };
 
   const renderMobileLinks = () => {
@@ -48,12 +51,8 @@ const Links = ({ categories }) => {
                 setProductsOpen={setProductsOpen}
                 isMainLink={true}
               />
-              {link.title === "Shop by Category" && (
-                <div
-                  className={`${styles.subLinks} ${
-                    productsOpen ? styles.menuOpen : ""
-                  }`}
-                >
+              {link.title === "Shop by Category" && productsOpen && (
+                <div className={styles.subLinks}>
                   {link.subLinks.map((subLink) => (
                     <MobileNavLinks
                       key={subLink.title}
@@ -68,24 +67,38 @@ const Links = ({ categories }) => {
           );
         })}
 
-        {/* {authenticated ? (
+        {session ? (
           <>
-            {isAdmin && (
-              <MobileNavLinks
-                item={{ title: "Admin", path: "/admin" }}
-                toggleMenu={toggleMenu}
-                setProductsOpen={setProductsOpen}
-              />
-            )}
-            <button onClick={handleLogout}>Logout</button>
+            <MobileNavLinks
+              item={{ title: "My Account", path: "/account" }}
+              toggleMenu={toggleMenu}
+              setProductsOpen={setProductsOpen}
+            />
+            <button
+              onClick={async () => {
+                toggleMenu();
+                setProductsOpen();
+                await signOut({ redirect: false });
+                window.location.href = "/";
+              }}
+            >
+              Logout
+            </button>
           </>
         ) : (
-          <MobileNavLinks
-            item={{ title: "Login", path: "/login" }}
-            toggleMenu={toggleMenu}
-            setProductsOpen={setProductsOpen}
-          />
-        )} */}
+          <>
+            <MobileNavLinks
+              item={{ title: "Login", path: "/login" }}
+              toggleMenu={toggleMenu}
+              setProductsOpen={setProductsOpen}
+            />
+            <MobileNavLinks
+              item={{ title: "Register", path: "/register" }}
+              toggleMenu={toggleMenu}
+              setProductsOpen={setProductsOpen}
+            />
+          </>
+        )}
       </div>
     );
   };

@@ -25,3 +25,7 @@
 .details p {
   margin: 10px 0;
 }
+
+.details a {
+  color: #32cd32;
+}

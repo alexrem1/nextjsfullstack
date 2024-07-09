@@ -1,0 +1,41 @@
+.container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.profileAndOrders {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.profileSection,
+.ordersSection {
+  background-color: #f0f0f0;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.welcome {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+@media (min-width: 768px) {
+  .profileAndOrders {
+    grid-template-columns: 1fr 1fr;
+  }
+  .profileSection {
+    grid-column: 1 / span 1;
+  }
+
+  .ordersSection {
+    grid-column: 2 / span 1;
+  }
+}

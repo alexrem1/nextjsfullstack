@@ -3,6 +3,7 @@ import { db } from "@/lib/db";
 import Stripe from "stripe";
 import nodemailer from "nodemailer";
 import { Set } from "core-js";
+import { getSession } from "@/lib/getSession";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
@@ -15,6 +16,8 @@ export async function getCheckoutSession(session_id) {
 
   try {
     connection = await db.getConnection();
+
+    const authenticated = await getSession();
 
     const session = await stripe.checkout.sessions.retrieve(session_id, {
       expand: ["line_items"],
@@ -34,7 +37,7 @@ export async function getCheckoutSession(session_id) {
       }
 
       const insertQuery =
-        "INSERT INTO orders (date, name, session_id, email, number, shipping_details) VALUES (?, ?, ?, ?, ?, ?)";
+        "INSERT INTO orders (date, name, session_id, email, number, shipping_details, orderItems, userId) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
       const timestamp = session.created;
       const date = new Date(timestamp * 1000);
@@ -64,6 +67,16 @@ export async function getCheckoutSession(session_id) {
         } ${session.shipping_details.address.city}, ${
           session.shipping_details.address.postal_code
         } `,
+        session.line_items.data
+          .filter((product) => !product.description.includes("Delivery Cost"))
+          .map(
+            (product) =>
+              `${product.quantity}x ${product.description} for £${
+                product.amount_total / 100
+              }`
+          )
+          .join(", "),
+        authenticated && authenticated.id,
       ];
 
       const [result] = await connection.query(insertQuery, values);
@@ -84,14 +97,11 @@ export async function getCheckoutSession(session_id) {
               `;
               const recValues = [newOrderId, productDesc];
               await connection.query(q, recValues);
-              console.log("Inserted product description:", productDesc);
             }
           } catch (error) {
-            console.error(
-              "Error inserting produc:",
-              product.description,
-              error
-            );
+            return {
+              error: `Error inserting products: ${product.description}, ${error}`,
+            };
           }
         });
 
@@ -150,7 +160,6 @@ export async function getCheckoutSession(session_id) {
 
     return { session: JSON.parse(JSON.stringify(session)) };
   } catch (error) {
-    console.log(error.message, "mess");
     return { error: error.message };
   } finally {
     if (connection) {
