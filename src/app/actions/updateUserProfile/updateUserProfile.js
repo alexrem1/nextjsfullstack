@@ -15,8 +15,8 @@ export default async function updateUserProfile(userId, newDetails) {
     });
     // Check if email already exists
     const [existingUsers] = await connection.query(
-      "SELECT email FROM users WHERE email = ?",
-      [validatedData.email]
+      "SELECT email FROM users WHERE email = ? AND userId != ?",
+      [validatedData.email, userId]
     );
 
     if (existingUsers.length > 0) {
