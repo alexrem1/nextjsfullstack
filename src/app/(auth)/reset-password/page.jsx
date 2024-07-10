@@ -1,22 +1,21 @@
 "use client";
+
+import { useRouter } from "next/navigation";
 import styles from "./page.module.css";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useState, useEffect } from "react";
+import { resetPasswordSchema } from "@/lib/schemas/resetPasswordSchema";
+import resetPassword from "@/app/actions/resetPassword/resetPassword";
 import { AlertTriangle, CheckCircle2, Eye, EyeOff } from "lucide-react";
-import signup from "@/app/actions/signup/signup";
-import { registrationSchema } from "@/lib/schemas/registrationSchema";
-import { useRouter } from "next/navigation";
-import Link from "next/link";
-
-function Register() {
+function ResetPassword({ searchParams }) {
   const router = useRouter();
 
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [serverError, setServerError] = useState([]);
   const [success, setSuccess] = useState();
-  const [redirectCountdown, setRedirectCountdown] = useState(5); // Initial countdown time
+  const [redirectCountdown, setRedirectCountdown] = useState(5);
 
   const togglePasswordVisibility = () => {
     setShowPassword((prevState) => !prevState);
@@ -31,7 +30,7 @@ function Register() {
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm({
-    resolver: yupResolver(registrationSchema),
+    resolver: yupResolver(resetPasswordSchema),
   });
 
   useEffect(() => {
@@ -51,29 +50,26 @@ function Register() {
     return () => {
       clearInterval(countdownTimer);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [success, redirectCountdown]);
 
   async function onSubmit(data) {
     setServerError([]);
+    setSuccess();
     // Clear any previous server error
-    const response = await signup(data);
+    const response = await resetPassword(data, searchParams.token);
 
-    if (!response.success) {
-      if (response.errors) {
-        // Handle server validation errors
-        setServerError(response.errors);
+    if (response) {
+      if (response.success) {
+        setSuccess(true);
       } else {
-        // Handle duplicate email error
-        setServerError([response.message]);
+        setServerError([response.error]);
       }
-    } else {
-      setSuccess(response.message);
     }
   }
-
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>{success ? null : "Register"}</h1>
+      <h1 className={styles.title}>{success ? null : "Reset Password"}</h1>
 
       {success ? (
         <div className={styles.success}>
@@ -81,24 +77,13 @@ function Register() {
             <CheckCircle2 />
           </span>
           <p>
-            Registration successful. Redirecting to login page in{" "}
+            Your password has been reset. Redirecting to login page in{" "}
             {redirectCountdown} seconds...
           </p>
         </div>
       ) : (
         <>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <div className={styles.inputDiv}>
-              <label>Name</label>
-              <input type="text" {...register("name")} />
-              {errors.name && <p>{errors.name.message}</p>}
-            </div>
-            <div className={styles.inputDiv}>
-              <label>Email</label>
-              <input type="email" {...register("email")} />
-              {errors.email && <p>{errors.email.message}</p>}
-            </div>
-
             <div className={styles.inputDiv}>
               <label>Password</label>
               <input
@@ -129,7 +114,11 @@ function Register() {
             </div>
 
             <button disabled={isSubmitting} type="submit">
-              {isSubmitting ? "Registering" : "Register"}
+              {success
+                ? "Password Reset"
+                : isSubmitting
+                ? "Resetting Password..."
+                : "Reset Password"}
             </button>
             {serverError.length > 0 && (
               <div className={styles.warningMessage}>
@@ -142,16 +131,9 @@ function Register() {
               </div>
             )}
           </form>
-          <p className={styles.loginPrompt}>
-            Already have an account?{" "}
-            <Link href="/login" className={styles.loginLink}>
-              Login
-            </Link>
-          </p>
         </>
       )}
     </div>
   );
 }
-
-export default Register;
+export default ResetPassword;

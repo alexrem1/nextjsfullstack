@@ -8,7 +8,8 @@ export default async function userOrders(userId) {
     SELECT o.id, o.date, o.name, o.email, o.number, o.shipping_details, o.orderItems, o.userId as orderUserId
 FROM orders o
 JOIN users u ON o.userId = u.userId
-WHERE u.userId = ?;
+WHERE u.userId = ?
+ORDER BY o.date ASC;
     `;
   try {
     const connection = await db.getConnection();

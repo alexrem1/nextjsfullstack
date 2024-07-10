@@ -88,6 +88,11 @@ function LoginPage() {
           Register
         </Link>
       </p>
+      <p className={styles.registerPrompt}>
+        <Link href="/send-reset-password" className={styles.registerLink}>
+          Forgot Password?
+        </Link>
+      </p>
     </div>
   );
 }

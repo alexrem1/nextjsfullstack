@@ -1,9 +1,9 @@
 "use server";
 import { db } from "@/lib/db";
 import Stripe from "stripe";
-import nodemailer from "nodemailer";
 import { Set } from "core-js";
 import { getSession } from "@/lib/getSession";
+import { sendOrderConfirmation } from "@/lib/email";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
@@ -14,6 +14,9 @@ export async function getCheckoutSession(session_id) {
 
   let connection;
 
+  function padZero(num) {
+    return num < 10 ? "0" + num : num;
+  }
   try {
     connection = await db.getConnection();
 
@@ -24,7 +27,7 @@ export async function getCheckoutSession(session_id) {
     });
 
     if (session.payment_status === "paid" && session.status === "complete") {
-      // // Check if session_id is already in the database
+      // Check if session_id is already in the database
       const checkQuery =
         "SELECT COUNT(*) AS count FROM orders WHERE session_id = ?";
       const [rows] = await connection.query(checkQuery, [session.id]);
@@ -52,7 +55,7 @@ export async function getCheckoutSession(session_id) {
         ":" +
         date.getMinutes() +
         ":" +
-        date.getSeconds();
+        padZero(date.getSeconds());
 
       const values = [
         formattedDate,
@@ -105,57 +108,7 @@ export async function getCheckoutSession(session_id) {
           }
         });
 
-      // Send email notification
-      var transporter = nodemailer.createTransport({
-        service: "gmail",
-        auth: {
-          user: process.env.EMAIL,
-          pass: process.env.PASSWORD,
-        },
-      });
-
-      var mailOptions = {
-        from: process.env.EMAIL,
-        to: session.customer_details.email,
-        subject: "Your Order Confirmation",
-        html: `
-              <p>We are delighted to inform you that your order has been successfully placed.</p>
-
-              <ul>
-              <li><p>You have purchased: ${session.line_items.data
-                .filter(
-                  (product) => !product.description.includes("Delivery Cost")
-                )
-                .map((product) => `${product.quantity}x ${product.description}`)
-                .join(", ")}</p></li>
-                <li><p>It'll be sent to the provided shipping address:  ${
-                  session.shipping_details.address.line1
-                }, ${
-          session.shipping_details.address.line2 !== null
-            ? `${session.shipping_details.address.line2}, `
-            : ""
-        } ${session.shipping_details.address.city}, ${
-          session.shipping_details.address.postal_code
-        } </p></li>
-      <li> <p>We'll be in touch with you soon to confirm your order on the number provided: ${
-        session.customer_details.phone
-      }</p></li>
-              </ul>
-
-        <p>If you have any questions or need further assistance, please don't hesitate to reply to this email. We're here to help!</p>
-
-        <p>Thank you for choosing us for your purchase.</p>
-
-        <p>Yours, <br />Alex</p>
-        `,
-      };
-
-      try {
-        await transporter.sendMail(mailOptions);
-        console.log("Email sent successfully");
-      } catch (error) {
-        console.error("Error sending email:", error);
-      }
+      await sendOrderConfirmation(session);
     }
 
     return { session: JSON.parse(JSON.stringify(session)) };

@@ -3,6 +3,7 @@
 import { registrationSchema } from "@/lib/schemas/registrationSchema";
 import { db } from "@/lib/db";
 import bcrypt from "bcryptjs";
+import { registered } from "../../../lib/email";
 
 export default async function signup(data) {
   let connection;
@@ -39,8 +40,9 @@ INSERT INTO users (name, email, password) VALUES (? , ? , ?)
     // Execute the query
     await connection.query(insertQuery, values);
 
+    const registeredResult = await registered(validatedData.email);
     // Return success response
-    return { success: true, message: "User registered successfully." };
+    return { success: true, message: registeredResult };
   } catch (error) {
     // Handle validation errors
     if (error.name === "ValidationError") {

@@ -12,13 +12,21 @@ function ProfileDetails({ userInfo }) {
     <div className={styles.container}>
       <h1>Profile Details</h1>
 
-      <div className={styles.details}>
-        <label>Name</label>
-        <p>{userInfo.name}</p>
-        <label>Email</label>
-        <p>{userInfo.email}</p>
-        <label>Password</label>
-        <p> {maskPassword(userInfo.password)}</p>
+      <div className={styles.ordersList}>
+        <div className={styles.orderCard}>
+          <div className={styles.orderDetails}>
+            <p>
+              <strong>Name:</strong> {userInfo.name}
+            </p>
+            <p>
+              <strong>Email:</strong> {userInfo.email}
+            </p>
+
+            <p>
+              <strong>Password:</strong> {maskPassword(userInfo.password)}
+            </p>
+          </div>
+        </div>
       </div>
       <button onClick={() => router.push("/account/update-profile")}>
         Update user details

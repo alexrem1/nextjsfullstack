@@ -14,13 +14,32 @@ export default async function updateUserProfile(userId, newDetails) {
       abortEarly: false,
     });
     // Check if email already exists
-    const [existingUsers] = await connection.query(
+    const [existingUserEmail] = await connection.query(
       "SELECT email FROM users WHERE email = ? AND userId != ?",
       [validatedData.email, userId]
     );
 
-    if (existingUsers.length > 0) {
-      return { error: "Email already exists" };
+    if (existingUserEmail.length > 0) {
+      return { success: false, error: "Email already exists" };
+    }
+
+    const [users] = await connection.query(
+      "SELECT password FROM users WHERE userId = ?",
+      [userId]
+    );
+
+    const user = users[0];
+
+    const isSamePassword = await bcrypt.compare(
+      validatedData.password,
+      user.password
+    );
+
+    if (isSamePassword) {
+      return {
+        success: false,
+        error: "Currently, this is your password. Choose a new password.",
+      };
     }
 
     const hashedPassword = await bcrypt.hash(validatedData.password, 10);
@@ -32,6 +51,7 @@ export default async function updateUserProfile(userId, newDetails) {
     revalidatePath(`/account`);
     return { success: true, message: "Successfully updated profile" };
   } catch (error) {
+    console.log(error);
     return { error: `Error updating user profile: ${error}` };
   } finally {
     if (connection) {

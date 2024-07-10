@@ -1,27 +1,35 @@
-/* styles.module.css */
-
 .container {
+  width: 100%;
   max-width: 600px;
   margin: 0 auto;
-  padding: 20px;
 }
 
-.details {
+.ordersList {
   margin-top: 20px;
+}
+
+.orderCard {
   background-color: #f0f0f0;
   border-radius: 8px;
   padding: 15px;
   margin-bottom: 15px;
 }
 
-.details label {
-  font-weight: bold;
-  margin-bottom: 6px;
+.orderDetails {
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
-.details p {
-  margin: 0;
-  color: #333333;
+@media (min-width: 768px) {
+  .orderCard {
+    padding: 20px;
+  }
+
+  .orderDetails {
+    font-size: 16px;
+  }
 }
 
 .container button {

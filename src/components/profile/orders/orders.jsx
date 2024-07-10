@@ -10,9 +10,6 @@ async function Orders({ userInfo }) {
           <div key={order.id} className={styles.orderCard}>
             <div className={styles.orderDetails}>
               <p>
-                <strong>Order ID:</strong> {order.id}
-              </p>
-              <p>
                 <strong>Date:</strong> {order.date}
               </p>
               <p>
