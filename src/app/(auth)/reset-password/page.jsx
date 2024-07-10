@@ -1,21 +1,20 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import styles from "./page.module.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { resetPasswordSchema } from "@/lib/schemas/resetPasswordSchema";
 import resetPassword from "@/app/actions/resetPassword/resetPassword";
 import { AlertTriangle, CheckCircle2, Eye, EyeOff } from "lucide-react";
-function ResetPassword({ searchParams }) {
-  const router = useRouter();
+import useCountdownRedirect from "@/lib/useContext/useCountdownRedirect";
 
+function ResetPassword({ searchParams }) {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [serverError, setServerError] = useState([]);
   const [success, setSuccess] = useState();
-  const [redirectCountdown, setRedirectCountdown] = useState(5);
+  const { redirectCountdown } = useCountdownRedirect(success, 5, "/login");
 
   const togglePasswordVisibility = () => {
     setShowPassword((prevState) => !prevState);
@@ -32,26 +31,6 @@ function ResetPassword({ searchParams }) {
   } = useForm({
     resolver: yupResolver(resetPasswordSchema),
   });
-
-  useEffect(() => {
-    // Countdown effect to redirect after success
-    let countdownTimer;
-    if (success) {
-      countdownTimer = setInterval(() => {
-        setRedirectCountdown((prevCount) => prevCount - 1);
-      }, 1000);
-
-      if (redirectCountdown === 0) {
-        router.push("/login");
-      }
-    }
-
-    // Cleanup timer on component unmount or after redirect
-    return () => {
-      clearInterval(countdownTimer);
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [success, redirectCountdown]);
 
   async function onSubmit(data) {
     setServerError([]);

@@ -2,21 +2,19 @@
 import styles from "./page.module.css";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { AlertTriangle, CheckCircle2, Eye, EyeOff } from "lucide-react";
 import signup from "@/app/actions/signup/signup";
 import { registrationSchema } from "@/lib/schemas/registrationSchema";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
+import useCountdownRedirect from "@/lib/useContext/useCountdownRedirect";
 
 function Register() {
-  const router = useRouter();
-
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [serverError, setServerError] = useState([]);
   const [success, setSuccess] = useState();
-  const [redirectCountdown, setRedirectCountdown] = useState(5); // Initial countdown time
+  const { redirectCountdown } = useCountdownRedirect(success, 5, "/login");
 
   const togglePasswordVisibility = () => {
     setShowPassword((prevState) => !prevState);
@@ -33,25 +31,6 @@ function Register() {
   } = useForm({
     resolver: yupResolver(registrationSchema),
   });
-
-  useEffect(() => {
-    // Countdown effect to redirect after success
-    let countdownTimer;
-    if (success) {
-      countdownTimer = setInterval(() => {
-        setRedirectCountdown((prevCount) => prevCount - 1);
-      }, 1000);
-
-      if (redirectCountdown === 0) {
-        router.push("/login");
-      }
-    }
-
-    // Cleanup timer on component unmount or after redirect
-    return () => {
-      clearInterval(countdownTimer);
-    };
-  }, [success, redirectCountdown]);
 
   async function onSubmit(data) {
     setServerError([]);

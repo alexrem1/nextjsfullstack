@@ -27,8 +27,6 @@ export default async function login(data) {
       user.password
     );
 
-    console.log(isPasswordValid, "isPasswordValid", user, "user retrieved");
-
     if (!isPasswordValid || users.length === 0) {
       return {
         success: false,
@@ -44,8 +42,6 @@ export default async function login(data) {
       id: user.userId,
       name: user.name,
     });
-
-    console.log(result);
 
     return { result, success: true };
   } catch (error) {

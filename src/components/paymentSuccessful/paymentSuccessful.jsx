@@ -1,35 +1,15 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styles from "./paymentSuccessful.module.css";
 import { useSession } from "next-auth/react";
+import useCountdownRedirect from "../../lib/useContext/useCountdownRedirect";
 
 function PaymentSuccessful({ error, paymentMade, session }) {
   const authenticated = useSession();
-  const router = useRouter();
   localStorage.setItem("cart", []);
 
-  const [redirectCountdown, setRedirectCountdown] = useState(5); // Initial countdown time
-
-  useEffect(() => {
-    // Countdown effect to redirect after success
-    let countdownTimer;
-    if (session) {
-      countdownTimer = setInterval(() => {
-        setRedirectCountdown((prevCount) => prevCount - 1);
-      }, 1000);
-
-      if (redirectCountdown === 0) {
-        authenticated ? router.push("/account") : router.push("/");
-      }
-    }
-
-    // Cleanup timer on component unmount or after redirect
-    return () => {
-      clearInterval(countdownTimer);
-    };
-  }, [redirectCountdown]);
+  const { redirectCountdown } = useCountdownRedirect(session, 5, "/account");
 
   if (error) {
     return (

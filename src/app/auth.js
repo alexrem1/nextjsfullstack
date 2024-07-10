@@ -54,6 +54,10 @@ const authOptions = {
         nextUrl.pathname.startsWith("/login") ||
         nextUrl.pathname.startsWith("/register");
 
+      const isOnPasswordReset =
+        nextUrl.pathname.startsWith("/reset") ||
+        nextUrl.pathname.startsWith("/send");
+
       // Allow access to all routes except /account if not logged in
       if (isOnAccount && !isLoggedIn) {
         // Redirect to login page with a callback URL to the originally requested page
@@ -63,7 +67,7 @@ const authOptions = {
       }
 
       // Redirect logged-in users trying to access login or register pages to home page
-      if (isLoggedIn && isOnAuthPage) {
+      if (isLoggedIn && (isOnAuthPage || isOnPasswordReset)) {
         return Response.redirect(new URL("/", nextUrl));
       }
 

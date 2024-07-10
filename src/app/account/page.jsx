@@ -6,8 +6,6 @@ import Orders from "@/components/profile/orders/orders";
 async function Account() {
   const session = await getSession();
 
-  console.log(session);
-
   const userInfo = await getUser(session?.id);
 
   if (userInfo.error) {
