@@ -67,37 +67,17 @@ const Links = ({ categories }) => {
           );
         })}
 
-        {session ? (
-          <>
-            <MobileNavLinks
-              item={{ title: "My Account", path: "/account" }}
-              toggleMenu={toggleMenu}
-              setProductsOpen={setProductsOpen}
-            />
-            <button
-              onClick={async () => {
-                toggleMenu();
-                setProductsOpen();
-                await signOut({ redirect: false });
-                window.location.href = "/";
-              }}
-            >
-              Logout
-            </button>
-          </>
-        ) : (
-          <>
-            <MobileNavLinks
-              item={{ title: "Login", path: "/login" }}
-              toggleMenu={toggleMenu}
-              setProductsOpen={setProductsOpen}
-            />
-            <MobileNavLinks
-              item={{ title: "Register", path: "/register" }}
-              toggleMenu={toggleMenu}
-              setProductsOpen={setProductsOpen}
-            />
-          </>
+        {session && (
+          <button
+            onClick={async () => {
+              toggleMenu();
+              setProductsOpen();
+              await signOut({ redirect: false });
+              window.location.href = "/";
+            }}
+          >
+            Logout
+          </button>
         )}
       </div>
     );

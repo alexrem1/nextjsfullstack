@@ -19,8 +19,17 @@ function CartUpdate() {
   const totalQuantity = cart.reduce((total, item) => total + item.quantity, 0);
   return (
     <div
-      className={styles.cart}
-      style={{ right: totalQuantity < 10 && "13px" }}
+      className={styles.cartUpdate}
+      style={{
+        right:
+          totalQuantity === 0
+            ? "6.5px"
+            : totalQuantity < 10
+            ? "6.5"
+            : totalQuantity < 20
+            ? "4.5px"
+            : "3px",
+      }}
     >
       {checkPath !== "/cart" && totalQuantity}
     </div>

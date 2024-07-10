@@ -26,23 +26,8 @@ const DesktopLinks = () => {
           );
         })}
 
-        {session ? (
-          <>
-            <DesktopNavLinks item={{ title: "My Account", path: "/account" }} />
-            <button
-              onClick={async () => {
-                await signOut({ redirect: false });
-                window.location.href = "/";
-              }}
-            >
-              Logout
-            </button>
-          </>
-        ) : (
-          <>
-            <DesktopNavLinks item={{ title: "Login", path: "/login" }} />
-            <DesktopNavLinks item={{ title: "Register", path: "/register" }} />
-          </>
+        {session && (
+          <DesktopNavLinks item={{ title: "My Account", path: "/account" }} />
         )}
       </>
     );

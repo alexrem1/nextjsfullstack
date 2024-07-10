@@ -1,7 +1,6 @@
-.cart {
+.cartUpdate {
   position: absolute;
-  right: 10.5px;
-  top: 10.5px;
+  top: -12.5px;
   font-size: 70%;
   font-weight: 900;
 }

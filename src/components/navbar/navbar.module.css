@@ -40,21 +40,20 @@ nav.container .right {
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 10px;
+}
+nav.container .right .logD {
+  display: none;
 }
 
-nav.container .right a svg {
-  height: 40px;
-  width: 40px;
+nav.container .right .logD button {
+  all: unset;
 }
 
-nav.container .right a {
+nav.container .right .cart {
   position: relative;
 }
-nav.container .right .cart {
-  position: absolute;
-  right: 4px;
-  top: -15px;
-}
+
 .subLinks {
   display: flex;
   flex-direction: column;
@@ -62,4 +61,10 @@ nav.container .right .cart {
 }
 
 @media (min-width: 768px) {
+  nav.container .right .logD {
+    display: block;
+  }
+  nav.container .right .logM {
+    display: none;
+  }
 }
