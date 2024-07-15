@@ -6,10 +6,14 @@ import { useSession } from "next-auth/react";
 import useCountdownRedirect from "../../lib/useContext/useCountdownRedirect";
 
 function PaymentSuccessful({ error, paymentMade, session }) {
-  const authenticated = useSession();
+  const { data: authenticated } = useSession();
   localStorage.setItem("cart", []);
 
-  const { redirectCountdown } = useCountdownRedirect(session, 5, "/account");
+  const { redirectCountdown } = useCountdownRedirect(
+    session,
+    5,
+    authenticated ? "/account" : "/"
+  );
 
   if (error) {
     return (
@@ -54,12 +58,14 @@ function PaymentSuccessful({ error, paymentMade, session }) {
               .join(", ")}
           </p>
           <p>An email has been sent out to you confirming your details.</p>
-          {authenticated.data ? (
+          {authenticated ? (
             <p>
               Redirecting to your account page in {redirectCountdown} seconds...
             </p>
           ) : (
-            <p>Redirecting to login page in {redirectCountdown} seconds...</p>
+            <p>
+              Redirecting to the home page in {redirectCountdown} seconds...
+            </p>
           )}
         </div>
       )}
