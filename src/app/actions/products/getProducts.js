@@ -10,7 +10,6 @@ export default async function getProducts(
   pdp = null,
   searchQuery = null
 ) {
-  noStore();
   let connection;
 
   let q = `
